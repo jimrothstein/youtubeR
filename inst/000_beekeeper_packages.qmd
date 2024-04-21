@@ -1,0 +1,48 @@
+---
+title: "Beekeeper and Related packages"
+format: html
+editor: source
+editor_options: 
+  chunk_output_type: console
+collapse: true
+---
+
+::: {.content-visible unless-format="pdf"}
+
+\section{ mermaid }
+:::
+
+## example 
+```{}
+graph TD
+    A[Enter Chart Definition] --> B(Preview)
+    B --> C{decide}
+    C --> D[Keep]
+    C --> E[Edit Definition]
+    E --> B
+    D --> F[Save Image and Code]
+    F --> B
+
+```
+
+## packages
+```{mermaid}
+graph TD
+
+anyapi
+apisguru
+rapid
+nectar
+beekeeper
+mockplumber
+
+
+
+```
+
+  anyapi
+  rapid[rapid: Convert an API description (APID), such as one that follows the OpenAPI Specification, to an R API description object.]
+  N[nectar An opinionated framework for use within api-wrapping R packages]
+  beekeeper[Use beekeeper to create and maintain R packages that wrap APIs.] 
+
+
