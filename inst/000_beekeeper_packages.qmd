@@ -7,34 +7,44 @@ editor_options:
 collapse: true
 ---
 
+```{r}
+library(DiagrammeR)
+```
+
+
+```{r graph}
+DiagrammeR::grViz("
+  digraph rmarkdown {
+    vector -> atomic -> character
+    atomic -> numeric
+    atomic -> logical
+    numeric -> double
+    numeric -> integer
+    integer -> factor
+    double  -> date
+    double -> POSIXct
+    vector -> list
+  }
+  ", height=600)
+```
+
+```{r graph}
+DiagrammeR::grViz("
+  digraph rmarkdown {
+    anyapi -> apisguru
+  rapid
+nectar
+beekeeper
+mockplumber
+  }
+  ", height=600)
+```
 ::: {.content-visible unless-format="pdf"}
 
 \section{ mermaid }
 :::
 
-## example 
-```{}
-graph TD
-    A[Enter Chart Definition] --> B(Preview)
-    B --> C{decide}
-    C --> D[Keep]
-    C --> E[Edit Definition]
-    E --> B
-    D --> F[Save Image and Code]
-    F --> B
 
-```
-
-## packages
-```{mermaid}
-graph TD
-
-anyapi
-apisguru
-rapid
-nectar
-beekeeper
-mockplumber
 
 
 
