@@ -28,31 +28,76 @@ DiagrammeR::grViz("
   ", height=600)
 ```
 
-```{r graph}
-DiagrammeR::grViz("
-  digraph rmarkdown {
-    anyapi -> apisguru
-  rapid
-nectar
-beekeeper
+```{r}
+# Create a simple flow chart using grViz() -------------------------------------  
+simple_flowchart <- grViz(
+  "digraph {
+         
+    graph[layout = dot, rankdir = LR] # Set node direction
+                     
+    node[shape = circle, style = filled] # Set global node attributes 
+                     
+    a[label = 'Photosynthesis', fillcolor = 'darkseagreen']
+    b[label = 'Aerobic \nrespiration', fillcolor = 'mistyrose']
+    c[label = 'Solar \nenergy', fillcolor = 'gold']
+
+    edge[color = black, fontsize = 8] # Set global edge attributes  
+                     
+    a -> b[label = 'Oxygen \nGlucose']
+    a -> b[style = 'invis']
+    a -> b[style = 'invis']
+    b -> a[label = 'Carbon dioxide \n Water']
+    b -> a[style = 'invis']
+    b -> a[style = 'invis']
+    c -> a[label = '                       ']
+                     
+  }"
+)
+simple_flowchart
+```
+### modify
+```{r}
+# Create a simple flow chart using grViz() -------------------------------------  
+simple_flowchart <- grViz(
+  "digraph {
+         
+    graph[layout = dot, rankdir = LR] # Set node direction
+                     
+    node[shape = circle, style = filled] # Set global node attributes 
+                     
+    a[label = 'anyagi \n This package to find ....', fillcolor = 'gold']
+    b[label = 'apisguru', fontsize= 7,  fillcolor='gold']
+    c[label = 'Solar \nenergy', fillcolor = 'gold']
+    d[label = 'rapid', fillcolor = 'lightblue']
+    e[label = 'nectar', fillcolor = 'white']
+    f[label = 'mockplumber', fontsize=21, fillcolor = 'white']
+
+    edge[color = black, fontsize = 8] # Set global edge attributes  
+                     
+    a -> b[label = 'Select an api']
+    a -> b[style = 'invis']
+    a -> b[style = 'invis']
+    b -> a[label = 'Carbon dioxide \n Water']
+    b -> a[style = 'invis']
+    b -> a[style = 'invis']
+    c -> a[label = '                       ']
+    d
+    e
+    f
+                     
+  }"
+)
+simple_flowchart
+```
+
+
+```
+
 mockplumber
-  }
-  ", height=600)
-```
-::: {.content-visible unless-format="pdf"}
-
-\section{ mermaid }
-:::
-
-
-
-
-
-```
-
-  anyapi
   rapid[rapid: Convert an API description (APID), such as one that follows the OpenAPI Specification, to an R API description object.]
   N[nectar An opinionated framework for use within api-wrapping R packages]
   beekeeper[Use beekeeper to create and maintain R packages that wrap APIs.] 
+
+```
 
 
