@@ -9,6 +9,9 @@ collapse: true
 
 ```{r}
 library(DiagrammeR)
+library(DiagrammeRsvg)
+library(rsvg)
+library(here)
 ```
 
 
@@ -27,77 +30,39 @@ DiagrammeR::grViz("
   }
   ", height=600)
 ```
-
+simple_flowchart
+```
+### BEEKEEPER ecosystem
 ```{r}
 # Create a simple flow chart using grViz() -------------------------------------  
 simple_flowchart <- grViz(
   "digraph {
-         
-    graph[layout = dot, rankdir = LR] # Set node direction
-                     
-    node[shape = circle, style = filled] # Set global node attributes 
-                     
-    a[label = 'Photosynthesis', fillcolor = 'darkseagreen']
-    b[label = 'Aerobic \nrespiration', fillcolor = 'mistyrose']
-    c[label = 'Solar \nenergy', fillcolor = 'gold']
 
-    edge[color = black, fontsize = 8] # Set global edge attributes  
+    graph[layout = dot, rankdir = LR] # Set node direction
+    node[shape = box, style = filled] # Set global node attributes 
                      
-    a -> b[label = 'Oxygen \nGlucose']
-    a -> b[style = 'invis']
-    a -> b[style = 'invis']
-    b -> a[label = 'Carbon dioxide \n Water']
-    b -> a[style = 'invis']
-    b -> a[style = 'invis']
-    c -> a[label = '                       ']
-                     
+    box1[style = 'invis']
+
+    a[label = 'anyagi \n This package to find ....', fillcolor = 'green']
+    b[label = 'apisguru',  fillcolor='gold']                    
+    c[label = 'httr2', fillcolor = 'gold']
+    d[label = 'rapid \n Convert an API description (APID), such as one that follows the OpenAPI Specification, to an R API description object', fillcolor = 'gold']
+
+    f[label = 'nectar \n An opinionated framework for use within api-wrapping R packages', fillcolor = 'white']
+
+  g[label='beekeeper \n Use beekeeper to create and maintain R packages that wrap APIs.']
+
+h[label = 'mockplumber' ]
+
+    d -> c
   }"
-)
+  )
+
 simple_flowchart
 ```
-### modify
 ```{r}
-# Create a simple flow chart using grViz() -------------------------------------  
-simple_flowchart <- grViz(
-  "digraph {
-         
-    graph[layout = dot, rankdir = LR] # Set node direction
-                     
-    node[shape = circle, style = filled] # Set global node attributes 
-                     
-    a[label = 'anyagi \n This package to find ....', fillcolor = 'gold']
-    b[label = 'apisguru', fontsize= 7,  fillcolor='gold']
-    c[label = 'Solar \nenergy', fillcolor = 'gold']
-    d[label = 'rapid', fillcolor = 'lightblue']
-    e[label = 'nectar', fillcolor = 'white']
-    f[label = 'mockplumber', fontsize=21, fillcolor = 'white']
-
-    edge[color = black, fontsize = 8] # Set global edge attributes  
-                     
-    a -> b[label = 'Select an api']
-    a -> b[style = 'invis']
-    a -> b[style = 'invis']
-    b -> a[label = 'Carbon dioxide \n Water']
-    b -> a[style = 'invis']
-    b -> a[style = 'invis']
-    c -> a[label = '                       ']
-    d
-    e
-    f
-                     
-  }"
-)
-simple_flowchart
+simple_flowchart %>% 
+  export_svg %>%
+  charToRaw %>%
+  rsvg_svg(here("dv-using_diagrammer-simple_grvis.svg"))
 ```
-
-
-```
-
-mockplumber
-  rapid[rapid: Convert an API description (APID), such as one that follows the OpenAPI Specification, to an R API description object.]
-  N[nectar An opinionated framework for use within api-wrapping R packages]
-  beekeeper[Use beekeeper to create and maintain R packages that wrap APIs.] 
-
-```
-
-
